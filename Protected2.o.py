@@ -157,8 +157,8 @@ async def on_ready():
 
 buttons = [
     [
-        Button(style=ButtonStyle.URL, label='SUPPORT SERVER !', url='https://discord.com/api/oauth2/authorize?client_id=852194474292412427&permissions=8&scope=bot%20applications.commands'),
-        Button(style=ButtonStyle.URL, label='INVITE ME !', url='https://discord.com/api/oauth2/authorize?client_id=852194474292412427&permissions=8&scope=bot%20applications.commands')
+        Button(style=ButtonStyle.URL, label='SUPPORT SERVER !', url='https://discord.gg/2RDVVpcJqC'),
+        Button(style=ButtonStyle.URL, label='INVITE ME !', url='https://discord.com/api/oauth2/authorize?client_id=915298664476471298&permissions=8&scope=bot%20applications.commands')
     ],
 ]
 

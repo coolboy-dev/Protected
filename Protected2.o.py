@@ -240,6 +240,11 @@ async def kick(ctx, member: discord.Member = None, *, reason = None):
         await ctx.send(f"Ask {ctx.guild.owner} To kick Buddy")
 
 
+@client.command()
+async def invite(ctx):
+    await ctx.send("INVITE ME !!", components=buttons)
+	
+	
 
 @client.command()
 @commands.is_owner()

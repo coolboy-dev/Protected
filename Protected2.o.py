@@ -173,6 +173,19 @@ async def help(ctx):
     await ctx.send(embed=e, components=buttons)
 
 
+@client.event
+async def on_guild_join(guild):
+    server = client.get_guild(guild.id)
+    ProtectedSystem.NewServer(guild.owner.id, guild.id)
+    log_channel = client.get_channel(915310165832663060)
+    embed = discord.Embed(color=0, description=f'Joined New Server!')
+    embed.add_field(name='Server Name', value=f'**`{server.name}`**')
+    embed.add_field(name='Server Owner', value=f'**`{server.owner}`**')
+    embed.add_field(name='Server Members', value=f'**`{len(server.members)}`**')
+    embed.set_footer(text='Ravager Development')
+    embed.set_author(name='Project Protected', icon_url='https://images-ext-1.discordapp.net/external/bDDxuClUX8snm7AW2BaVX2T5ZbcTBnnNuksYk8xRMq4/%3Fsize%3D1024/https/cdn.discordapp.com/icons/777437789356032011/a_be571618bce1786ab1042378e166284d.gif?width=408&height=408')
+    embed.set_thumbnail(url='https://images-ext-1.discordapp.net/external/bDDxuClUX8snm7AW2BaVX2T5ZbcTBnnNuksYk8xRMq4/%3Fsize%3D1024/https/cdn.discordapp.com/icons/777437789356032011/a_be571618bce1786ab1042378e166284d.gif?width=408&height=408')
+    await log_channel.send(embed=embed)
 
 
 

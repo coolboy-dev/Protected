@@ -1,1 +1,1 @@
-worker: python main.py
+worker: python Protected2.o.py

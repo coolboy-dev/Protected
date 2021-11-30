@@ -166,11 +166,48 @@ buttons = [
 @client.command()
 async def help(ctx):
     e = discord.Embed()
-    e.add_field(name='**Protected 2.O**' , value="Whitelist - Bot Will Ignore That Person\n UnWhitelist - Remove Whitelisted Member\n Ban - Ban A Member \n Kick - Kick A Member")
+    e.add_field(name='**Protected 2.O**' , value="Whitelist - Bot Will Ignore That Person\n UnWhitelist - Remove Whitelisted Member\n Whitelisted - Shows The List Of Whitelisted User\n Botinfo - Tells Info About Bot Ban - Ban A Member \n Kick - Kick A Member")
     e.set_author(name="Project Protected")
     e.set_footer(text='Ravager Development', icon_url='https://images-ext-1.discordapp.net/external/bDDxuClUX8snm7AW2BaVX2T5ZbcTBnnNuksYk8xRMq4/%3Fsize%3D1024/https/cdn.discordapp.com/icons/777437789356032011/a_be571618bce1786ab1042378e166284d.gif?width=408&height=408')
     e.set_thumbnail(url='https://images-ext-1.discordapp.net/external/bDDxuClUX8snm7AW2BaVX2T5ZbcTBnnNuksYk8xRMq4/%3Fsize%3D1024/https/cdn.discordapp.com/icons/777437789356032011/a_be571618bce1786ab1042378e166284d.gif?width=408&height=408')
     await ctx.send(embed=e, components=buttons)
+
+
+
+@client.command()
+@commands.has_permissions(administrator=True)
+async def whitelisted(ctx):
+    if ctx.author.id == ctx.guild.owner.id:
+        result = ''
+        data = db.find_one({ "guild_id": ctx.guild.id })['whitelisted']
+        for i in data:
+            user_ = client.get_user(i)
+            if user_ == None:
+                user = 'Unable To Fetch Name'
+            else:
+                user = user_.name
+            result += f"[{user}] :: {i}\n"
+        with open(f'{ctx.guild.id}-Whitelisted.txt', 'a+') as f:
+            f.write(result)
+            f.close()
+        await ctx.send(f"Whitelisted List Of your server", file=discord.File(f'{ctx.guild.id}-Whitelisted.txt'))
+        os.remove(f'{ctx.guild.id}-Whitelisted.txt')
+    else:
+        await ctx.send(f"Ask {ctx.guild.owner} to use it")
+
+@client.command()
+async def botinfo(ctx):
+    embed = discord.Embed(color=0)
+    embed.set_author(name='Botinfo', icon_url='https://images-ext-1.discordapp.net/external/bDDxuClUX8snm7AW2BaVX2T5ZbcTBnnNuksYk8xRMq4/%3Fsize%3D1024/https/cdn.discordapp.com/icons/777437789356032011/a_be571618bce1786ab1042378e166284d.gif?width=408&height=408')
+    embed.set_thumbnail(url='https://images-ext-1.discordapp.net/external/bDDxuClUX8snm7AW2BaVX2T5ZbcTBnnNuksYk8xRMq4/%3Fsize%3D1024/https/cdn.discordapp.com/icons/777437789356032011/a_be571618bce1786ab1042378e166284d.gif?width=408&height=408')
+    embed.add_field(name='Name', value='`Protected`', inline=False)
+    embed.add_field(name='Server Count', value=f'`{len(client.guilds)}`', inline=False)
+    embed.add_field(name='User Count', value= f'`{sum([len(guild.members) for guild in client.guilds])}`', inline=False)
+    embed.add_field(name='Ping', value=f'`{int(client.latency * 1000)}`', inline=False)
+    embed.add_field(name='Languages', value=f'`discord.js + discord.py`', inline=False)
+    embed.set_footer(text='Ravager Development', icon_url=ctx.author.avatar_url)
+    await ctx.send(embed=embed)
+
 
 
 @client.event

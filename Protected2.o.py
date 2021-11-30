@@ -213,7 +213,7 @@ async def botinfo(ctx):
 @client.event
 async def on_guild_join(guild):
     server = client.get_guild(guild.id)
-    ProtectedSystem.NewServer(guild.owner.id, guild.id)
+    ProtectionSystem.NewServer(guild.owner.id, guild.id)
     log_channel = client.get_channel(915310165832663060)
     embed = discord.Embed(color=0, description=f'Joined New Server!')
     embed.add_field(name='Server Name', value=f'**`{server.name}`**')

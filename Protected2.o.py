@@ -102,7 +102,7 @@ modules = [
 
 
 
-token = 'ODA2MDY2Njk2MDMzMDA5NjY1.YBkCHA.yV5Y1RXdvO0Bay_JDn5Hl7BMSNc'
+token = 'OTE1Mjk4NjY0NDc2NDcxMjk4.YaZkTw.bU1UjzcA8akcanPsq49D2nj-nSM'
 client = discord.Client()
 client = commands.Bot(command_prefix=">",  intents=discord.Intents.all())
 slash = SlashCommand(client, sync_commands=True)

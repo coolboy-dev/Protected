@@ -102,7 +102,7 @@ modules = [
 
 
 
-token = 'OTE1Mjk4NjY0NDc2NDcxMjk4.YaZkTw.bU1UjzcA8akcanPsq49D2nj-nSM'
+token = 'TOKEN'
 client = discord.Client()
 client = commands.Bot(command_prefix=">",  intents=discord.Intents.all())
 slash = SlashCommand(client, sync_commands=True)
@@ -110,7 +110,7 @@ client.remove_command('help')
 
 
 
-mongoClient = pymongo.MongoClient('mongodb://COOOLLLLLLBOYYYYY:qCpIslnCXm7qT9iM@forbeast-shard-00-00.wcenb.mongodb.net:27017,forbeast-shard-00-01.wcenb.mongodb.net:27017,forbeast-shard-00-02.wcenb.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-kpgs1i-shard-0&authSource=admin&retryWrites=true&w=majority')
+mongoClient = pymongo.MongoClient('MANGO DB DATABASE LINK')
 db = mongoClient.get_database("Protected").get_collection("servers")
 db2 = mongoClient.get_database("Protected").get_collection("protection")
 
